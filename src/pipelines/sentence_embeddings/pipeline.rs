@@ -177,6 +177,7 @@ impl SentenceEmbeddingsModel {
     ///
     /// * `config` - `SentenceEmbeddingsConfig` object containing the resource references (model, vocabulary, configuration) and device placement (CPU/GPU)
     pub fn new(config: SentenceEmbeddingsConfig) -> Result<Self, RustBertError> {
+        println!("----++++---- first come in SentenceEmbedding config");
         let transformer_type = config.transformer_type;
         let tokenizer_vocab_resource = &config.tokenizer_vocab_resource;
         let tokenizer_merges_resource = &config.tokenizer_merges_resource;

@@ -189,6 +189,7 @@ impl SentenceEmbeddingsModel {
             sentence_bert_config_resource.get_local_path()?,
         );
 
+        println!("----++++---- before TokenizerOption from file");
         let tokenizer = TokenizerOption::from_file(
             transformer_type,
             tokenizer_vocab_resource

@@ -53,7 +53,7 @@ impl SentenceEmbeddingsBuilder<Local> {
     }
 
     pub fn create_model(self) -> Result<SentenceEmbeddingsModel, RustBertError> {
-        println!("---- come in create_model scope");
+        println!("----++++ come in create_model scope");
         let model_dir = self.inner.model_dir;
 
         let modules_config = model_dir.join("modules.json");
@@ -109,7 +109,7 @@ impl SentenceEmbeddingsBuilder<Local> {
             device: self.device,
         };
 
-        println!("---- before SentenceEmbeddingsModel new config");
+        println!("----++++ before SentenceEmbeddingsModel new config");
         SentenceEmbeddingsModel::new(config)
     }
 }

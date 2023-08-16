@@ -240,6 +240,7 @@ impl SentenceEmbeddingsModel {
             dense_weights_resource,
             device,
         } = config;
+        println!("----++++----++++ come in new_with_tokenizer ----++++");
 
         let modules =
             SentenceEmbeddingsModulesConfig::from_file(modules_config_resource.get_local_path()?)
@@ -264,6 +265,8 @@ impl SentenceEmbeddingsModel {
         let mut embeddings_dim = pooling_config.word_embedding_dimension;
         let pooling_layer = Pooling::new(pooling_config);
 
+        println!("----++++----++++ new_with_tokenizer before Setup dense layer ----++++");
+
         // Setup dense layer
         let dense_layer = if modules.dense_module().is_some() {
             let dense_config =
@@ -280,6 +283,7 @@ impl SentenceEmbeddingsModel {
 
         let normalize_embeddings = modules.has_normalization();
 
+        println!("----++++----++++ done new_with_tokenizer ----++++");
         Ok(Self {
             tokenizer,
             sentence_bert_config,

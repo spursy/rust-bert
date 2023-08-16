@@ -112,7 +112,6 @@ pub fn load_weights(
                     println!("----++++----++++ load_weights **** 222222 path:: {:?} ", path.clone());
                     let load_res = vs.load(path);
                     match load_res {
-                        
                         Ok(inner_res) => {
                             println!("----++++----++++ load_weights **** ---- 222222 ");
                             Ok(inner_res)

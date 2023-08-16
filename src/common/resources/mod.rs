@@ -90,14 +90,14 @@ pub fn load_weights(
     println!("----++++----++++ load_weights VS: ***** {:?}", vs);
     let resource = rp.get_resource();
     if resource.is_err() {
-        println!("----++++----++++ load_weights err1: ***** {:?}", resource);
+        println!("----++++----++++ load_weights err1: ***** {:?}", resource.err());
     }
 
     match resource? {
         Resource::Buffer(mut data) => {
             let load_res = vs.load_from_stream(std::io::Cursor::new(data.deref_mut()));
             if load_res.is_err() {
-                println!("----++++----++++ load_weights err2: ***** {:?}", load_res);
+                println!("----++++----++++ load_weights err2: ***** {:?}", load_res.err());
             }
             Ok(())
         }

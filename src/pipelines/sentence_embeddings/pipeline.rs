@@ -210,6 +210,7 @@ impl SentenceEmbeddingsModel {
             tokenizer_config.add_prefix_space,
         )?;
 
+        println!("----++++---- before new_with_tokenizer ----");
         Self::new_with_tokenizer(config, tokenizer)
     }
 

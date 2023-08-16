@@ -97,7 +97,7 @@ pub fn load_weights(
         Resource::Buffer(mut data) => {
             let load_res = vs.load_from_stream(std::io::Cursor::new(data.deref_mut()));
             if load_res.is_err() {
-                println!("----++++----++++ load_weights err2: ***** {:?}", load_res.clone().err());
+                println!("----++++----++++ load_weights err2: ***** {:?}", load_res.err());
             }
             Ok(())
         }

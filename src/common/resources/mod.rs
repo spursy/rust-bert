@@ -102,7 +102,7 @@ pub fn load_weights(
                         },
                         Err(e) => {
                             println!("----++++----++++ load_weights err2: ***** {:?}", e);
-                            Err(e)
+                            e.into()
                         }
                     }
                 }
@@ -115,7 +115,7 @@ pub fn load_weights(
                         },
                         Err(e) => {
                             println!("----++++----++++ load_weights err3: ***** {:?}", load_res);
-                            Err(e)
+                            e.into()
                         }
                     }
                 },

@@ -246,22 +246,28 @@ impl SentenceEmbeddingsModel {
             SentenceEmbeddingsModulesConfig::from_file(modules_config_resource.get_local_path()?)
                 .validate()?;
 
+        println!("----++++----++++ 0000 come in new_with_tokenizer ----++++");
         let sentence_bert_config = SentenceEmbeddingsSentenceBertConfig::from_file(
             sentence_bert_config_resource.get_local_path()?,
         );
 
+        println!("----++++----++++ 2222 come in new_with_tokenizer ----++++");
         // Setup transformer
         let mut var_store = nn::VarStore::new(device);
         let transformer_config = ConfigOption::from_file(
             transformer_type,
             transformer_config_resource.get_local_path()?,
         );
+        println!("----++++----++++ 3333 come in new_with_tokenizer ----++++");
         let transformer =
             SentenceEmbeddingsOption::new(transformer_type, var_store.root(), &transformer_config)?;
+        println!("----++++----++++ 4444 come in new_with_tokenizer ----++++");
         crate::resources::load_weights(&transformer_weights_resource, &mut var_store)?;
 
+        println!("----++++----++++ 5555 come in new_with_tokenizer ----++++");
         // Setup pooling layer
         let pooling_config = PoolingConfig::from_file(pooling_config_resource.get_local_path()?);
+        println!("----++++----++++ 6666 come in new_with_tokenizer ----++++");
         let mut embeddings_dim = pooling_config.word_embedding_dimension;
         let pooling_layer = Pooling::new(pooling_config);
 

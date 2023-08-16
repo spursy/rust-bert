@@ -89,25 +89,42 @@ pub fn load_weights(
     println!("----++++----++++ load_weights RP: ***** {:?}", rp);
     println!("----++++----++++ load_weights VS: ***** {:?}", vs);
     let resource = rp.get_resource();
-    if resource.is_err() {
-        println!("----++++----++++ load_weights err1: ***** {:?}", resource.clone().err());
-    }
 
-    match resource? {
-        Resource::Buffer(mut data) => {
-            let load_res = vs.load_from_stream(std::io::Cursor::new(data.deref_mut()));
-            if load_res.is_err() {
-                println!("----++++----++++ load_weights err2: ***** {:?}", load_res.err());
+    match resource {
+        Ok(inner_res) => {
+            match inner_res {
+                Resource::Buffer(mut data) => {
+                    let load_res = vs.load_from_stream(std::io::Cursor::new(data.deref_mut()));
+                    match load_res {
+                        Ok(_) => {
+                            println!("----++++----++++ load_weights **** 111111 ");
+                            Ok(())
+                        },
+                        Err(e) => {
+                            println!("----++++----++++ load_weights err2: ***** {:?}", e);
+                            Err(e)
+                        }
+                    }
+                }
+                Resource::PathBuf(path) => {
+                    let load_res = vs.load(path);
+                    match load_res {
+                        Ok(inner_res) => {
+                            println!("----++++----++++ load_weights **** 222222 ");
+                            Ok(inner_res)
+                        },
+                        Err(e) => {
+                            println!("----++++----++++ load_weights err3: ***** {:?}", load_res);
+                            Err(e)
+                        }
+                    }
+                },
             }
-            Ok(())
-        }
-        Resource::PathBuf(path) => {
-            let load_res = vs.load(path);
-            if load_res.is_err() {
-                println!("----++++----++++ load_weights err3: ***** {:?}", load_res);
-            }
-            Ok(load_res?)
         },
+        Err(e) => {
+            println!("----++++----++++ load_weights err1: ***** {:?}", e);
+            Err(e)
+        }
     }
 }
 

@@ -94,10 +94,11 @@ pub fn load_weights(
         Ok(inner_res) => {
             match inner_res {
                 Resource::Buffer(mut data) => {
+                    println!("----++++----++++ load_weights **** 111111 ");
                     let load_res = vs.load_from_stream(std::io::Cursor::new(data.deref_mut()));
                     match load_res {
                         Ok(_) => {
-                            println!("----++++----++++ load_weights **** 111111 ");
+                            println!("----++++----++++ load_weights ****---- 111111 ");
                             Ok(())
                         },
                         Err(e) => {
@@ -107,10 +108,12 @@ pub fn load_weights(
                     }
                 }
                 Resource::PathBuf(path) => {
+                    println!("----++++----++++ load_weights **** 222222 ");
                     let load_res = vs.load(path);
                     match load_res {
+                        
                         Ok(inner_res) => {
-                            println!("----++++----++++ load_weights **** 222222 ");
+                            println!("----++++----++++ load_weights **** ---- 222222 ");
                             Ok(inner_res)
                         },
                         Err(e) => {

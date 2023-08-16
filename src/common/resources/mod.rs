@@ -109,6 +109,7 @@ pub fn load_weights(
                 }
                 Resource::PathBuf(path) => {
                     println!("----++++----++++ load_weights **** 222222 ");
+                    println!("----++++----++++ load_weights **** 222222 path:: {} ", path.clone());
                     let load_res = vs.load(path);
                     match load_res {
                         
